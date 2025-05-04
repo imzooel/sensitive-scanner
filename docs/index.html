@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensitiveScanner - Offensive Security Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            animation: glitch 1s linear infinite;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #00cc00;
+            margin-top: 10px;
+            text-shadow: 0 0 5px #00cc00;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: rgba(0, 255, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #00ff00;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #00ff00;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .section p, .section ul, .section pre {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #00cc00;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .section ul li:before {
+            content: ">>";
+            color: #00ff00;
+            position: absolute;
+            left: -20px;
+        }
+
+        .section pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .section pre code {
+            color: #00ff00;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00ff00;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .btn:hover {
+            background: #000;
+            color: #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #00cc00;
+            font-size: 0.9rem;
+            text-shadow: 0 0 5px #00cc00;
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section p, .section ul, .section pre {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sensitive Scanner</h1>
+            <p>Offensive Security Tool for Detecting Sensitive Data in JS Files</p>
+        </div>
+
+        <div class="section">
+            <h2>Overview</h2>
+            <p>
+                SensitiveScanner is a Go-based tool designed to identify sensitive data (e.g., API keys, tokens) in JavaScript files. Built with a focus on bug bounty hunting and web security, it leverages Go's concurrency for efficient scanning. This tool is perfect for ethical hackers, security researchers, and developers looking to secure their applications.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <ul>
+                <li>Detects sensitive data like API keys, Stripe keys, and tokens using regex patterns.</li>
+                <li>Supports concurrent scanning with adjustable concurrency (default: 5).</li>
+                <li>Scans single URLs or lists of URLs from a file.</li>
+                <li>Outputs results to the console or a JSON file.</li>
+                <li>Beautifies minified JS files for better detection.</li>
+                <li>Verbose mode for detailed logging.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Installation</h2>
+            <p>1. Ensure you have Go (1.21+) installed.</p>
+            <p>2. Clone the repository:</p>
+            <pre><code>git clone https://github.com/imzooel/sensitive-scanner.git
+cd sensitive-scanner
+go build -o sensitive-scanner</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>Usage</h2>
+            <p>Scan a single URL:</p>
+            <pre><code>./sensitive-scanner -url https://example.com/script.js</code></pre>
+            <p>Scan multiple URLs from a file (urls.txt):</p>
+            <pre><code>./sensitive-scanner -url-file urls.txt -concurrency 10 -output results.json</code></pre>
+            <p>Sample Output:</p>
+            <pre><code>[ALERT] Found sensitive data in https://example.com/script.js
+Match: pk_live_abc123xyz456
+Severity: Medium
+Pattern: Stripe Key</code></pre>
+        </div>
+
+        <div class="section" style="text-align: center;">
+            <a href="https://github.com/imzooel/sensitive-scanner" class="btn">View on GitHub</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 imzooel | Licensed under MIT | Built with a Hacking Vibe
+    </footer>
+
+    <script>
+        // Simple glitch effect on header
+        const glitchText = document.querySelector('.header h1');
+        setInterval(() => {
+            glitchText.style.animation = 'none';
+            setTimeout(() => {
+                glitchText.style.animation = 'glitch 1s linear infinite';
+            }, 50);
+        }, 5000);
+    </script>
+</body>
+</html>
