@@ -160,6 +160,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 This tool is intended for ethical use only, such as authorized security testing or bug bounty programs. Unauthorized scanning or misuse of this tool may violate laws or terms of service. Always obtain permission before scanning any website or application, and report findings responsibly through proper channels (e.g., bug bounty platforms like HackerOne or Bugcrowd).
 
-## AI-Generated Note
+## Vibecoding Note
 
 This project was generated with the assistance of Grok, an AI developed by xAI. As an independent security researcher, I used AI to accelerate development and learn best practices, but I have reviewed and understood the code to ensure it aligns with my skills and goals. This demonstrates my ability to leverage modern tools while building practical cybersecurity solutions.
